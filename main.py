@@ -11,7 +11,7 @@ from tkinter import ttk, messagebox
 db = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="subbu@2133044",
+    password="mani@2133044",
     auth_plugin='mysql_native_password',
     database="bank"
 )
@@ -542,7 +542,7 @@ def loaninsert():
     acn = e4.get()
     mn = e6.get()
     cur.execute(
-        "insert into loande(Desiredloanamount,annualincome,purpose,accountno,mobileno) values(" + dl + "," + ai + ",'" + p + "'," + acn + "," + mn + ")")
+        "insert into loans(Desiredloanamount,annualincome,purpose,accountno,mobileno) values(" + dl + "," + ai + ",'" + p + "'," + acn + "," + mn + ")")
     db.commit()
 
 
@@ -720,7 +720,7 @@ def create_bank_interface():
     heading_label = Label(root2, text="DIGITAL BANKING EXPERIENCE", font=("Arial", 24, "bold"), anchor="center")
     heading_label.grid(row=0, columnspan=5, pady=20)
 
-    vp = Image.open("C:\\Digital Experience Project\\view profile.jpg")
+    vp = Image.open("Images/profile.png")
     vp = vp.resize((200, 200), Image.LANCZOS)
     vp_image = ImageTk.PhotoImage(vp)
     l1 = Label(root2, image=vp_image)
@@ -728,7 +728,7 @@ def create_bank_interface():
     submit1 = Button(root2, text="View Profile", command=profilePage)
     submit1.grid(row=2, column=0, padx=20)
 
-    tran = Image.open("C:\\Digital Experience Project\\transaction.jpg")
+    tran = Image.open("Images/Transaction.png")
     tran = tran.resize((200, 200), Image.LANCZOS)
     tran_image = ImageTk.PhotoImage(tran)
     l2 = Label(root2, image=tran_image)
@@ -737,7 +737,7 @@ def create_bank_interface():
     submit2 = Button(root2, text="Transaction", command=transactions)
     submit2.grid(row=2, column=1, padx=20)
 
-    cal = Image.open("C:\\Digital Experience Project\\loan calculator.png")
+    cal = Image.open("Images/loan_calculator.png")
     cal = cal.resize((200, 200), Image.LANCZOS)
     cal_image = ImageTk.PhotoImage(cal)
     l3 = Label(root2, image=cal_image)
@@ -746,7 +746,7 @@ def create_bank_interface():
     submit3 = Button(root2, text="Loan Calculator", command=loancal)
     submit3.grid(row=2, column=2, padx=20)
 
-    loan = Image.open("C:\\Digital Experience Project\\loan application.jpg")
+    loan = Image.open("Images/Loan_application.jpeg")
     loan = loan.resize((200, 200), Image.LANCZOS)
     loan_image = ImageTk.PhotoImage(loan)
     l4 = Label(root2, image=loan_image)
@@ -755,7 +755,7 @@ def create_bank_interface():
     submit4 = Button(root2, text="Loan Application", command=loanwindow)
     submit4.grid(row=2, column=3, padx=20)
 
-    lock = Image.open("C:\\Digital Experience Project\\locker details.jpg")
+    lock = Image.open("Images/locker.jpeg")
     lock = lock.resize((200, 200), Image.LANCZOS)
     lock_image = ImageTk.PhotoImage(lock)
     l5 = Label(root2, image=lock_image)
@@ -764,7 +764,7 @@ def create_bank_interface():
     submit5 = Button(root2, text="Locker Details", command=lockwid)
     submit5.grid(row=4, column=0, padx=20)
 
-    bc = Image.open("C:\\Digital Experience Project\\block atm.jpg")
+    bc = Image.open("Images/block_atm.jpg")
     bc = bc.resize((200, 200), Image.LANCZOS)
     bc_image = ImageTk.PhotoImage(bc)
     l6 = Label(root2, image=bc_image)
@@ -773,7 +773,7 @@ def create_bank_interface():
     submit6 = Button(root2, text="Block ATM", command=atmblock1)
     submit6.grid(row=4, column=1, padx=20)
 
-    lp = Image.open("C:\\Digital Experience Project\\request.jpg")
+    lp = Image.open("Images/request.jpg")
     lp = lp.resize((200, 200), Image.LANCZOS)
     lp_image = ImageTk.PhotoImage(lp)
     l7 = Label(root2, image=lp_image)
@@ -782,7 +782,7 @@ def create_bank_interface():
     submit7 = Button(root2, text="Raise Request/Complaint", command=uinputs)
     submit7.grid(row=4, column=2, padx=20)
 
-    fb = Image.open("C:\\Digital Experience Project\\feedback.png")
+    fb = Image.open("Images/feedback.jpg")
     fb = fb.resize((200, 200), Image.LANCZOS)
     fb_image = ImageTk.PhotoImage(fb)
     l10 = Label(root2, image=fb_image)
@@ -791,7 +791,7 @@ def create_bank_interface():
     submit10 = Button(root2, text="Feedback", command=feedback_form)
     submit10.grid(row=4, column=3, padx=20)
 
-    lg = Image.open("C:\\Digital Experience Project\\logout.jpg")
+    lg = Image.open("Images/logout.png")
     lg = lg.resize((200, 200), Image.LANCZOS)
     lg_image = ImageTk.PhotoImage(lg)
     l11 = Label(root2, image=lg_image)
@@ -855,7 +855,7 @@ def retrieve_columns():
 
     try:
         cur.execute(
-            "SELECT branch_code, branch_name, branch_address FROM `lock` WHERE state = %s AND district = %s AND pincode = %s",
+            "SELECT branch_code, branch_name, branch_address FROM branch_lock WHERE state = %s AND district = %s AND pincode = %s",
             (state, district, pincode))
 
         rows = cur.fetchall()
