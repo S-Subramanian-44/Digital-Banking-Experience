@@ -493,7 +493,7 @@ def insertblock():
     ctr = Country.get()
     Regn = Registeredno.get()
     cur.execute(
-        "insert into blockatm(Account_no,Country,Registered_no) values (" + an + ",'" + ctr + "'," + Regn + ")")
+        "insert into atm_blocks(Account_no,Country,Registered_no) values (" + an + ",'" + ctr + "'," + Regn + ")")
     db.commit()
 
 
@@ -542,7 +542,7 @@ def loaninsert():
     acn = e4.get()
     mn = e6.get()
     cur.execute(
-        "insert into loans(Desiredloanamount,annualincome,purpose,accountno,mobileno) values(" + dl + "," + ai + ",'" + p + "'," + acn + "," + mn + ")")
+        "insert into loande(Desiredloanamount,annualincome,purpose,accountno,mobileno) values(" + dl + "," + ai + ",'" + p + "'," + acn + "," + mn + ")")
     db.commit()
 
 
